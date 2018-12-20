@@ -22,7 +22,7 @@ public class TopicProducer {
             参数2：消息确认模式)*/
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             //5.创建主题对象
-            Topic topic = session.createTopic("test-topic");
+            Topic topic = session.createTopic("test-JMS2");
             //6.创建消息生产者
             MessageProducer producer = session.createProducer(topic);
             //7.创建消息

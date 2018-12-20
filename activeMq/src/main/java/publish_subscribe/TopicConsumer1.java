@@ -22,7 +22,7 @@ public class TopicConsumer1 {
             //4.获取session  (参数1：是否启动事务,参数2：消息确认模式)
             Session session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
             //5.创建主题对象
-            Topic topic = session.createTopic("test-topic");
+            Topic topic = session.createTopic("test-JMS2");
             //6.创建消息消费者
             MessageConsumer consumer = session.createConsumer(topic);
             //7.监听消息
