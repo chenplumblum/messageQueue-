@@ -30,7 +30,7 @@ public class Comsume1 {
             public void onMessage(Message message) {
                 TextMessage textMessage = (TextMessage) message;
                 try {
-                        System.out.println("接收到消息:"+textMessage.getText());
+                        System.out.println("消费者1接收到消息:"+textMessage.getText());
                     } catch (JMSException e) {
                         e.printStackTrace();
                     }

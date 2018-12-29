@@ -1,8 +1,7 @@
-package plumblum.topic;
-
+package plumblum.JMS2;
 
 import com.plumblum.PlumblumApplication;
-import com.plumblum.topic.Produce;
+import com.plumblum.JMS2.Produce;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +10,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @Auther: cpb
- * @Date: 2018/12/29 15:21
+ * @Date: 2018/12/20 17:48
  * @Description:
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = PlumblumApplication.class)
-public class topic {
+public class JMS {
     @Autowired
     private Produce produce;
 
@@ -24,7 +23,7 @@ public class topic {
     public void test() throws InterruptedException {
 
         for(int i=0; i<5; i++){
-            produce.sendMessage("topic", "接收信息!!!");
+            produce.sendMessage("queue2", "接收信息!!!");
         }
     }
 }

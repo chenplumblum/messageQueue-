@@ -14,7 +14,7 @@ import javax.jms.Destination;
  * @Date: 2018/12/20 17:33
  * @Description:
  */
-@Component
+@Component("jms2Produce")
 public class Produce {
     @Autowired
     private JmsMessagingTemplate jmsTemplate;
