@@ -28,6 +28,7 @@ public class Produce {
         Queue queue;
         //5.创建消息生产者
         MessageProducer messageProducer;
+        //6.主题
         Destination destination;
 
         try {

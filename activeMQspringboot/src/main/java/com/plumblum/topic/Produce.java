@@ -21,8 +21,8 @@ public class Produce {
     private JmsMessagingTemplate jmsTemplate;
 
     public void sendMessage(String destinationName,final String message){
-        ActiveMQTopic activeMQTopic = new ActiveMQTopic(destinationName);
-        jmsTemplate.convertAndSend(activeMQTopic,message);
+        Destination destination = new ActiveMQTopic(destinationName);
+        jmsTemplate.convertAndSend(destination,message);
     }
 
 }

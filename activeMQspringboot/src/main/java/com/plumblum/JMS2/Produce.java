@@ -20,7 +20,7 @@ public class Produce {
     private JmsMessagingTemplate jmsTemplate;
 
     public void sendMessage(String destinationName,String message){
-        Destination destination = new ActiveMQQueue("topic");
+        Destination destination = new ActiveMQQueue(destinationName);
         jmsTemplate.convertAndSend(destination,message);
     }
 
