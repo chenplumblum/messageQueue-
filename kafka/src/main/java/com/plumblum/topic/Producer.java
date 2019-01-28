@@ -31,9 +31,13 @@ public class Producer {
     初始化配置
      */
     private static Properties initConfig(){
+        //        配置项在ProductConfig类中查看
         Properties properties = new Properties();
+        //配置ip和端口
         properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,BROKER_LIST);
+//        配置key的序列化方式。
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+//        配置value的序列化方式
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class.getName());
         return properties;
     }
@@ -42,6 +46,7 @@ public class Producer {
         //消息实体
         ProducerRecord<String , String> record = null;
         for (int i = 0; i < 1000; i++) {
+//            配置topic
             record = new ProducerRecord<String, String>(TOPIC, "value"+(int)(10*(Math.random())));
             //发送消息
             producer.send(record, new Callback() {
@@ -50,7 +55,7 @@ public class Producer {
                     if (null != e){
                         log.info("send error" + e.getMessage());
                     }else {
-                        System.out.println(String.format("offset:%s,partition:%s",recordMetadata.offset(),recordMetadata.partition()));
+                        System.out.println(String.format("测试：offset:%s,partition:%s",recordMetadata.offset(),recordMetadata.partition()));
                     }
                 }
             });

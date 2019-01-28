@@ -1,11 +1,14 @@
 package com.plumblum.topic;
 
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -29,20 +32,22 @@ public class Consumer {
     }
 
     private static Properties initConfig(){
+//        配置项在ConsumerConfig类中查看
         Properties properties = new Properties();
-        properties.put("bootstrap.servers",BROKER_LIST);
-        properties.put("group.id","0");
-        properties.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-        properties.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-        properties.setProperty("enable.auto.commit", "true");
-        properties.setProperty("auto.offset.reset", "earliest");
+        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,BROKER_LIST);
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG,"0");
+        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        properties.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
+        properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         return properties;
     }
 
 
     public static void main(String[] args) {
+        consumer.subscribe(Arrays.asList(TOPIC));
         while (true) {
-            ConsumerRecords<String, String> records = consumer.poll(10);
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(10));
             for (ConsumerRecord<String, String> record : records) {
                 System.out.println(record);
             }
