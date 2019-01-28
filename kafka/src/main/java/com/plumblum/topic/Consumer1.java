@@ -17,7 +17,7 @@ import java.util.Properties;
  * @Date: 2019/1/25 17:29
  * @Description:
  */
-public class Consumer {
+public class Consumer1 {
 
 
     static Logger log = LoggerFactory.getLogger(Producer.class);
@@ -36,7 +36,7 @@ public class Consumer {
         Properties properties = new Properties();
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,BROKER_LIST);
         //group_id用于分组，每组只有一个consumer获取到消息，用于做负载均衡，group内部开多少个consumer来消费完全取决于数据量和业务的实时性
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG,"0");
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG,"1");
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
